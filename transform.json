@@ -1,7 +1,6 @@
 { "tag":"tr", "children":[
   {"tag":"td","children":[
     {"tag":"a","href":"${filename}", "html":"Link"}]}, 
-  {"tag":"td","html":"${id3.artist}"},
-  {"tag":"td","html":"${id3.album}"},
-  {"tag":"td","html":"${id3.title}"} 
+  {"tag":"td","html":"${artist}"},
+  {"tag":"td","html":"${title}"} 
 ]}
