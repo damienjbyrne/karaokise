@@ -4,12 +4,19 @@ var ffmd = require('ffmetadata');
 var mime = require('mime');
 var eol = require('os').EOL;
 
+//var initialPath = '/home/damien/Music/Gilbert\ and\ Sullivan';
+var initialPath = '/home/damien/Music';
+//var initialPath = '/home/damienb/Music';
+// var initialPath = '/media/damien/Musashi/Karaoke';
+var resultFilePath = 'id3s.json';
+
 function FS_readFiles (paths, cb) {
     var result = [], errors = [], l = paths.length;
     paths.forEach(function (filePath, k) {
         var fileType = mime.lookup( filePath );
         if ( fileType === 'audio/mpeg' ) {
             ffmd.read( filePath, function(err, id3data) {
+                var wrote = false;
                 if (err) (errors[k] = err);
                 else {
                     //result[filePath] = id3data;
@@ -17,13 +24,16 @@ function FS_readFiles (paths, cb) {
                     if (id3data.hasOwnProperty('title') && id3data.hasOwnProperty('artist')) {
                         var record = '{"filename":"' + filePath + '","artist":"' + id3data.artist + '","title":"' + id3data.title + '"}';
                         fs.appendFileSync( resultFilePath, record);
+                        wrote = true;
                     }
                 }
                 --l;
                 if(l < 1) {
                     cb(err, result);
                 } else {
-                    fs.appendFileSync( resultFilePath, ',' + eol);
+                    if (wrote) {
+                        fs.appendFileSync( resultFilePath, ',' + eol);
+                    }
                 }
             });
         } else {
@@ -32,11 +42,6 @@ function FS_readFiles (paths, cb) {
     });
 }
 
-//var initialPath = '/home/damien/Music/Gilbert\ and\ Sullivan';
-//var initialPath = '/home/damien/Music';
-var initialPath = '/home/damienb/Music';
-// var initialPath = '/media/damien/Musashi/Karaoke';
-var resultFilePath = 'id3s.json';
 
 dir.files(initialPath, function(err, files) {
     if (err) throw err;
