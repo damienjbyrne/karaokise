@@ -13,6 +13,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Damien J Byrne",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/damienjbyrne/karaokise"
+  },
+  "keywords": [
+    "karaoke",
+    "id3"
+  ],
+  "bugs": {
+    "url": "https://github.com/damienjbyrne/karaokise/issues"
+  }
 }
