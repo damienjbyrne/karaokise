@@ -3,92 +3,74 @@
 <script src="./id3s.json"></script>
   <style>
     .list {
-        font-family:sans-serif;
-          margin:0;
-            padding:20px 0 0;
-    }
-    .list > li {
-        display:block;
-          background-color: #eee;
-            padding:10px;
-              box-shadow: inset 0 1px 0 #fff;
-    }
-    .avatar {
-        max-width: 150px;
-    }
-    img {
-        max-width: 100%;
-    }
-    h3 {
-        font-size: 16px;
-          margin:0 0 0.3rem;
-            font-weight: normal;
-              font-weight:bold;
-    }
-    p {
-        margin:0;
-    }
+	  font-family:sans-serif;
+	}
+	td {
+	  padding:10px; 
+	  border:solid 1px #eee;
+	}
 
-    input {
-        border:solid 1px #ccc;
-          border-radius: 5px;
-            padding:7px 14px;
-              margin-bottom:10px
-    }
-    input:focus {
-        outline:none;
-          border-color:#aaa;
-          }
-          .sort {
-              padding:8px 30px;
-                border-radius: 6px;
-                  border:none;
-                    display:inline-block;
-                      color:#fff;
-                        text-decoration: none;
-                          background-color: #28a8e0;
-                            height:30px;
-          }
-          .sort:hover {
-              text-decoration: none;
-                background-color:#1b8aba;
-          }
-          .sort:focus {
-              outline:none;
-          }
-          .sort:after {
-              width: 0;
-                height: 0;
-                  border-left: 5px solid transparent;
-                    border-right: 5px solid transparent;
-                      border-bottom: 5px solid transparent;
-                        content:"";
-                          position: relative;
-                            top:-10px;
-                              right:-5px;
-          }
-          .sort.asc:after {
-              width: 0;
-                height: 0;
-                  border-left: 5px solid transparent;
-                    border-right: 5px solid transparent;
-                      border-top: 5px solid #fff;
-                        content:"";
-                          position: relative;
-                            top:13px;
-                              right:-5px;
-          }
-          .sort.desc:after {
-              width: 0;
-                height: 0;
-                  border-left: 5px solid transparent;
-                    border-right: 5px solid transparent;
-                      border-bottom: 5px solid #fff;
-                        content:"";
-                          position: relative;
-                            top:-10px;
-                              right:-5px;
-          }
+	input {
+	  border:solid 1px #ccc;
+	  border-radius: 5px;
+	  padding:7px 14px;
+	  margin-bottom:10px
+	}
+	input:focus {
+	  outline:none;
+	  border-color:#aaa;
+	}
+	.sort {
+	  padding:8px 30px;
+	  border-radius: 6px;
+	  border:none;
+	  display:inline-block;
+	  color:#fff;
+	  text-decoration: none;
+	  background-color: #28a8e0;
+	  height:30px;
+	}
+	.sort:hover {
+	  text-decoration: none;
+	  background-color:#1b8aba;
+	}
+	.sort:focus {
+	  outline:none;
+	}
+	.sort:after {
+	  display:inline-block;
+	  width: 0;
+	  height: 0;
+	  border-left: 5px solid transparent;
+	  border-right: 5px solid transparent;
+	  border-bottom: 5px solid transparent;
+	  content:"";
+	  position: relative;
+	  top:-10px;
+	  right:-5px;
+	}
+	.sort.asc:after {
+	  width: 0;
+	  height: 0;
+	  border-left: 5px solid transparent;
+	  border-right: 5px solid transparent;
+	  border-top: 5px solid #fff;
+	  content:"";
+	  position: relative;
+	  top:4px;
+	  right:-5px;
+	}
+	.sort.desc:after {
+	  width: 0;
+	  height: 0;
+	  border-left: 5px solid transparent;
+	  border-right: 5px solid transparent;
+	  border-bottom: 5px solid #fff;
+	  content:"";
+	  position: relative;
+	  top:-4px;
+	  right:-5px;
+	}
   </style>
 <head>
 </head>
@@ -104,23 +86,27 @@
       Sort by artist
     </button>
 
-    <ul class="list"></ul>
+	<table>
+		<!-- IMPORTANT, class="list" have to be at tbody -->
+		<tbody class="list">
+      <tr>
+        <td class="title"></td>
+        <td class="artist"></td>
+      </tr>
+    </tbody>
+  	</table>
 
   </div>
 
   <script src="http://listjs.com/no-cdn/list.js"></script>
   <script type="text/javascript">
     var options = {
-valueNames: [ 'filename', 'artist', 'title' ],
-                      item: '<li><h3 class="title"></h3><p class="artist"></p></li>'
+					valueNames: [ 'filename', 'artist', 'title' ]//,
+                    //item: '<tr><td class="title"></td><td class="artist"></td></tr>'
     };
 
-    var userList = new List('users', options, values);
+    var userList = new List('songs', options, values);
 
-    /*userList.add({
-      name: "Gustaf Lindqvist",
-      born: 1983
-    });*/
   </script>
 </body>
 </html>
